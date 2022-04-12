@@ -1,0 +1,130 @@
+<style type="text/css">
+
+    .root
+ {
+   display:flex;
+   justify-content:right;
+   align-items:center;
+   padding:5px;
+     width: 100%;
+   border-radius:10px;
+
+ }
+
+ /*     .root1*/
+ /*{*/
+ /*  display:flex;*/
+ /*justify-content:left;*/
+ /*         align-items: center;*/
+ /*  border-radius:10px;*/
+
+ /*}*/
+     .Frame{
+ width:97%;
+         height: 90%;
+ background-color: #fff;
+          margin:28px 22px;
+     border-radius: 30px;
+  }
+
+
+ .Myframe{
+ width:500px;
+ background-color:#fff;
+ padding:20px;
+     margin-bottom: 37px;
+     border-radius: 30px;
+  }
+ .gap{
+    margin-top:10px;
+ }
+ .btnstyles{
+ display:flex;
+ justify-content:center;
+ align-item:center;
+ }
+
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<!--<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/static/Javascript/project.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>AdminLogin[MM]</title>
+</head>
+
+<body style=" background-color: #dfe6e9;">
+
+<form action="/checkadminlogin" method="POST" enctype="multipart/form-data" >{% csrf_token %}
+ <div class="frame">
+    <div class="root">
+        <img src="/static/MM10.jpg"  style="border-radius:50px;width:900px; height: 500px; margin: 63px;">
+        <div class="Myframe">
+
+            <div class="row gap" style="display:flex;align-items:center;padding-left:160px;margin-bottom:10px;">
+                <img src="/static/Vishal.jpg" title="Vishal Jain" style="border-radius:100px;width:140px; height: 130px;">
+
+            </div>
+
+
+               <div class="row gap" style="display:flex;align-items:center;font-size:25px;letter:2px; spacing:2px; font-weight:bold;padding-left:150px;margin-bottom:10px;">
+                  Admin Sign in
+                </div>
+
+
+
+       <i class="fa fa-envelope" aria-hidden="true"></i> Email Address:
+         <div class="row gap">
+           <div class="col">
+                 <input type="text"  class="form-control"  id="emailaddress" name="emailaddress" placeholder="Email Address" >
+           </div>
+         </div>
+<!--        <div class="field">-->
+<!--  <p class="control has-icons-left has-icons-right">-->
+<!--    <input class="input" type="email" placeholder="Email">-->
+<!--    <span class="icon is-small is-left">-->
+<!--      <i class="fas fa-envelope"></i>-->
+<!--    </span>-->
+<!--    <span class="icon is-small is-right">-->
+<!--      <i class="fas fa-check"></i>-->
+<!--    </span>-->
+<!--  </p>-->
+<!--</div>-->
+<i class="fas fa-lock"></i> Password:
+          <div class="row gap">
+           <div class="col">
+      <input type="text" class="form-control" name="password" id="password" placeholder="Password">
+           </div>
+         </div>
+<!--        <div class="field">-->
+<!--  <p class="control has-icons-left">-->
+<!--    <input class="input" type="password" placeholder="Password">-->
+<!--    <span class="icon is-small is-left">-->
+<!--      <i class="fas fa-lock"></i>-->
+<!--    </span>-->
+<!--  </p>-->
+<!--</div>-->
+
+           <div class="row gap">
+             <div class="col btnstyles">
+                 <button type="submit"  class="btn btn-primary w-100">Login</button>{{msg}}
+            </div>
+
+
+           </div>
+         </div>
+
+
+
+
+       </div>
+    </div>
+
+    </div>
+</form>
+</body>
+</html>

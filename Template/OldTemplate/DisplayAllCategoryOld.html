@@ -1,0 +1,158 @@
+<style type="text/css">
+ .root
+ {
+   display:flex;
+   justify-content:center;
+   align-items:center;
+   padding:20px;
+   border-radius:10px;
+
+ }
+
+ .Myframe{
+ width:60%;
+ background-color: #fff;
+ padding:20px;
+     border-radius: 30px;
+  }
+ .gap{
+    margin-top:10px;
+ }
+ .btnstyles{
+ display:flex;
+ justify-content:center;
+ align-item:center;
+ }
+
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+ <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>MM[DisplayAllCategory]</title>
+</head>
+<body style=" background-color: #dfe6e9 ;">
+ <div class="root">
+    <div class="Myframe">
+            <div class="row" style="display:flex; color:Blue;align-items:center;font-size:20px;letter:2px; spacing:2px; font-weight:bold;padding-left:20px;margin-bottom:10px;">
+                 <img src="/static/pic1.png" width="50">
+                   List of Category:
+
+            </div>
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>CategoryName</th>
+        <th>CategoryIcon</th>
+        <th>Update</th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for row in rows %}
+    <tr>
+      <th scope="row">{{row.0}}</th>
+      <td>{{row.1}}</td>
+        <td><a href="editcategoryicon?cid={{row.0}} &categoryname={{row.1}} &categoryicon={{row.2}}"><img src="/static/{{row.2}}" width="40"/></a></td>
+        <td> <a class="button is-primary modal-button" data="{{ row }}" data-target = "#modal" >Edit/Delete</a> </td>
+<!--href="displaycategorybyid?cid={{row.0}}"-->
+    </tr>
+   {% endfor %}
+
+  </tbody>
+</table>
+    </div>
+ </div>
+ </body>
+
+  <div id="modal" class="modal" >
+      <div class = "modal-background"></div>
+                 <div class = "modal-content" style=" border-radius:10px;width:650px; height:450px; background: #dfe6e9;">
+<!--                 <div style=" border-radius:10px;width:400px; height:400px; background:#fff;">-->
+<!--                   Hello-->
+<!--                 </div>-->
+<form action="/editdeletecategoryrecord"  enctype="multipart/form-data">
+   <input type="hidden" id="cid" name="cid">
+
+   <div class="root">
+    <div class="Myframe" style="width:600px;">
+            <div class="row" style="display:flex;color:blue;align-items:center;font-size:14px;letter:2px; spacing:2px; font-weight:bold;padding-left:20px;margin-bottom:10px;">
+                 <img src="/static/CategoryIcon.png" width="40">
+                   Edit_Category:
+
+            </div>
+         <div class="row">
+           <div class="col">
+          <input type="text" class="form-control"  id="categoryname" name="categoryname"  placeholder="Enter Category Name"/>
+           </div>
+
+         </div>
+        <div class="row gap">
+                 <div class="col btnstyles">
+               &nbsp;<img  name="pic" id="pic" width="30%" />
+           </div>
+         </div>
+
+                 <div class="row gap">
+             <div class="col btnstyles">
+                 <input type="submit"  name="btn" value="Edit" class="btn btn-primary w-100" />
+            </div>
+
+                   <div class="col btnstyles">
+         <input type="submit"  name="btn" value="Delete" class="btn btn-primary w-100"/>
+
+           </div>
+         </div>
+
+           <div class="row gap">
+               <div class="col btnstyles"  style="font-size: 18px; font-weight: bold; color: green">
+                        {{msg}}
+               </div>
+           </div>
+    </div>
+   </div>
+</form>
+
+                  </div>
+
+				<button class = "modal-close is-large" aria-label = "close"></button>
+
+                  </div>
+
+ <script>
+     function setdata(data){
+         data=data.replace("(","");
+         data=data.replace(")","");
+         data=data.replaceAll("'","");
+         data=data.split(",");
+
+         return data;
+     }
+
+         $(".modal-button").click(function() {
+            var target = $(this).data("target");
+            var data=$(this).attr("data");
+              data=setdata(data);
+
+             $('#cid').val(data[0].trim());
+            $('#categoryname').val(data[1].trim());
+            $('#pic').attr('src','/static/'+(data[2].trim()));
+
+            $("html").addClass("is-clipped");
+            $(target).addClass("is-active");
+         });
+
+         $(".modal-close").click(function() {
+            $("html").removeClass("is-clipped");
+            $(this).parent().removeClass("is-active");
+         });
+      </script>
+
+</html>

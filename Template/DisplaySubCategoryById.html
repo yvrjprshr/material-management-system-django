@@ -1,0 +1,102 @@
+<style type="text/css">
+ .root
+ {
+   display:flex;
+   justify-content:center;
+   align-items:center;
+   padding:60px;
+   border-radius:10px;
+
+ }
+ .Myframe{
+ width:700px;
+ background-color: #fff;
+ padding:20px;
+     border-radius: 30px;
+  }
+ .gap{
+    margin-top:10px;
+ }
+ .btnstyles{
+ display:flex;
+ justify-content:center;
+ align-item:center;
+
+ }
+
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/static/Javascript/category.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Material Mangement[SubCategory]</title>
+</head>
+
+<body style=" background-color: #dfe6e9;">
+<form action="/editdeletesubcategoryrecord"  enctype="multipart/form-data">
+    <input type="hidden" name="cid" value="{{row.0}}" />
+    <input type="hidden" name="scid" value="{{row.1}}" />
+   <div class="root">
+    <div class="Myframe">
+            <div class="row" style="display:flex;align-items:center;font-size:14px;letter spacing:2px; font-weight:bold;padding-left:20px;margin-bottom:10px;">
+                 <img src="/static/pic2.png" width="40">
+                   Edit/delete SubCategory:
+
+            </div>
+          <div class="row gap">
+           <div class="col">
+           <select class="form-control" name="categoryid"  id="categoryid">
+               <option value="">{{row.5}}</option>
+           </select>
+           </div>
+          </div>
+
+         <div class="row gap">
+           <div class="col">
+          <input type="text" class="form-control"  value="{{row.2}}" name="subcategoryname" placeholder="Enter Sub Category Name">
+           </div>
+         </div>
+
+          <div class="row gap">
+           <div class="col">
+          <input type="text" class="form-control" value="{{row.3}}" name="scdescription" placeholder="Enter Sub Category Description">
+           </div>
+         </div>
+
+
+        <div class="row gap">
+                 <div class="col btnstyles">
+             &nbsp;<img src="/static/{{row.4}}" id="pic" width="40" />
+           </div>
+         </div>
+
+             <div class="row gap">
+             <div class="col btnstyles">
+                 <button type="submit"  name="btn" value="Edit" class="btn btn-primary w-100">Save</button>
+            </div>
+
+                   <div class="col btnstyles">
+                <button type="submit"  name="btn" value="Delete" class="btn btn-primary w-100">Delete</button>
+
+           </div>
+         </div>
+
+           <div class="row gap">
+               {% ifequal msg "Record Successfully Submitted" %}
+
+             <div class="col btnstyles"  style="font-size: 18px; font-weight: bold; color: green">
+                        {{msg}}
+                  {% endifequal %}
+           </div>
+           </div>
+
+
+    </div>
+       </div>
+</form>
+</body>
+</html>

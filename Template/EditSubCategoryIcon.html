@@ -1,0 +1,49 @@
+<style type="text/css">
+    .root{
+        display: grid;
+        justify-content: center;
+        align-items: center;
+            padding: 50px 0px 0px 184px;
+    }
+
+.gap{
+    margin-top: 4px;
+}
+    img{
+        width: 60%;
+        height: 60%;
+    }
+
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit_SubCategory_Picture</title>
+</head>
+<body style=" background-color: #dfe6e9;">
+<form action="/saveeditsubcategoryicon" method="post" enctype="multipart/form-data" >{%csrf_token%}
+    <input type="hidden" name="scid" value="{{row.0}}"/>
+    <input type="hidden" name="oldpicture" value="{{row.3}}"/>
+
+    <div class="root">
+        <div class="mypic">
+            <h3 style="display: flex; background-color: burlywood; padding: 5px 108px 0px; width: 35%;">Edit Sub Category Picture</h3>
+          <h4>{{ row.1 }}</h4>
+   <div class="gap">
+       <img src="/static/{{row.2}}">
+   </div>
+      <div class="gap">
+       <b>Select Image Which u want to replace</b>
+      </div>
+     <div class="gap" >
+       <input  class="btn btn-primary" type="file" required name="subcategoryicon"/>
+       <input type="submit" Value="Save Picture">
+
+     </div>
+            </div>
+
+    </div>
+</form>
+</body>
+</html>
